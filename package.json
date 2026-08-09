@@ -1,13 +1,13 @@
 {
   "name": "pathways-career-portal",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "private": true,
   "engines": {
     "node": ">=20.9"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/prepare-v12-release.mjs && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "bootstrap-admin": "node scripts/bootstrap-admin.mjs"
