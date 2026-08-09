@@ -1,0 +1,26 @@
+{
+  "name": "pathways-career-portal",
+  "version": "1.1.2",
+  "private": true,
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "cat source_chunks/part*.b64 | base64 -d > /tmp/pathways-v1.1.2-source.tar.gz && tar -xzf /tmp/pathways-v1.1.2-source.tar.gz && next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.57.4",
+    "next": "16.2.11",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.0",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "typescript": "5.8.3"
+  }
+}
