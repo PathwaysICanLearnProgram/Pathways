@@ -1,0 +1,20 @@
+# PATHWAYS — Netlify environment variables
+# Safe/public values are pre-filled. Keep server-only values secret.
+
+NEXT_PUBLIC_SUPABASE_URL=https://zvgragymlezepfrkevdv.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_YV2U2W_YwpbH3IDPIkT2_w_6c7WYBCY
+
+# Get this from Supabase Dashboard > Project Settings > API keys.
+# Store ONLY in Netlify Environment Variables. Never commit it to source code.
+SUPABASE_SERVICE_ROLE_KEY=PASTE_SERVER_ONLY_SECRET_HERE
+
+# Generate once with: openssl rand -base64 32
+# Store ONLY in Netlify Environment Variables.
+COUNSELLOR_NOTES_ENCRYPTION_KEY=GENERATE_32_BYTE_BASE64_SECRET_HERE
+
+# Replace after Netlify gives you the live production domain.
+NEXT_PUBLIC_SITE_URL=https://YOUR-PATHWAYS-SITE.netlify.app
+
+# Optional social login buttons. Leave false for the first launch.
+NEXT_PUBLIC_ENABLE_GOOGLE=false
+NEXT_PUBLIC_ENABLE_MICROSOFT=false

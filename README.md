@@ -1,4 +1,3 @@
-
 # Pathways — Production Career Development Portal
 
 Pathways is a standalone, cloud-deployable career-development and guidance portal for students from Upper Primary through Form 5. It is designed for deployment on **Netlify** with **Supabase Cloud** providing PostgreSQL, authentication and managed database services.
@@ -161,3 +160,13 @@ Staff can add new institutions/resources and create additional learning modules 
 - Supabase Auth + PostgreSQL + RLS
 - Netlify Next.js/OpenNext deployment
 - Node.js AES-256-GCM for counsellor-note encryption
+
+## Netlify Next.js build setting
+
+This release pins the Netlify build configuration in `netlify.toml`:
+
+- Build command: `npm run build`
+- Publish directory: `.next`
+- Base directory: repository root
+
+Do not set the publish directory to the repository root. If the Netlify UI contains an older conflicting value, this `netlify.toml` setting takes precedence, but it is still recommended to change the UI Publish directory to `.next`.
