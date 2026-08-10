@@ -16,6 +16,7 @@ export interface StudentDetails {
   career_focus: string | null
   graduation_year: number | null
   counsellor_id: string | null
+  participant_type?: 'student' | 'client'
 }
 
 export interface ModuleRow {
