@@ -1,6 +1,6 @@
 'use client'
 
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState, type CSSProperties } from 'react'
 import { useRouter } from 'next/navigation'
 import { getSupabaseBrowser } from '@/lib/supabase-browser'
 
@@ -11,7 +11,7 @@ export default function AuthScreen() {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)
-  const [branding, setBranding] = useState<{portal_name:string;logo_url:string|null}>({portal_name:'Pathways',logo_url:null})
+  const [branding, setBranding] = useState<{portal_name:string;logo_url:string|null;primary_color:string;accent_color:string;background_color:string;sidebar_color:string}>({portal_name:'Pathways',logo_url:null,primary_color:'#0d766e',accent_color:'#c58a2b',background_color:'#f4f6f3',sidebar_color:'#102b31'})
   const google = process.env.NEXT_PUBLIC_ENABLE_GOOGLE === 'true'
   const microsoft = process.env.NEXT_PUBLIC_ENABLE_MICROSOFT === 'true'
 
@@ -24,13 +24,13 @@ export default function AuthScreen() {
         const { data } = await Promise.resolve(
           supabase
             .from('portal_branding')
-            .select('portal_name,logo_url')
+            .select('portal_name,logo_url,primary_color,accent_color,background_color,sidebar_color')
             .eq('id', true)
             .maybeSingle()
         )
 
         if (mounted && data) {
-          setBranding(data as { portal_name: string; logo_url: string | null })
+          setBranding(data as { portal_name:string; logo_url:string|null; primary_color:string; accent_color:string; background_color:string; sidebar_color:string })
         }
       } catch {
         // Branding is optional. Fall back to the default Pathways identity.
@@ -91,7 +91,9 @@ export default function AuthScreen() {
     }
   }
 
-  return <main className="auth-shell">
+  const themeStyle={ '--teal':branding.primary_color,'--gold':branding.accent_color,'--paper':branding.background_color,'--nav':branding.sidebar_color } as CSSProperties
+
+  return <main className="auth-shell" style={themeStyle}>
     <section className="auth-brand">
       <div className="brand-mark auth-logo">{branding.logo_url?<img src={branding.logo_url} alt={`${branding.portal_name} logo`}/>:'P'}</div><p className="eyebrow">CAREER DEVELOPMENT • GUIDANCE • NEXT STEPS</p>
       <h1>{branding.portal_name}</h1><p className="lead">A personal career-development journey from Upper Primary to Form 5 — combining student exploration with counsellor guidance.</p>
@@ -99,7 +101,7 @@ export default function AuthScreen() {
     </section>
     <section className="auth-panel"><form className="auth-card" onSubmit={submit}>
       <p className="eyebrow">SECURE PORTAL</p><h2>{mode === 'login' ? 'Sign in to Pathways' : 'Reset your password'}</h2>
-      <p className="muted">Student accounts are controlled by the Pathways administrator.</p>
+      <p className="muted">Student and client accounts are controlled by the Pathways administrator.</p>
       <label>Email<input type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} required /></label>
       {mode === 'login' && <label>Password<input type="password" autoComplete="current-password" value={password} onChange={e=>setPassword(e.target.value)} required /></label>}
       {message && <div className="notice">{message}</div>}

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/prepare-v12-release.mjs && next build",
+    "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "bootstrap-admin": "node scripts/bootstrap-admin.mjs"
